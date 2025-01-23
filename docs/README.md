@@ -12,7 +12,7 @@ BetterJS是D语言的子集，可编译成纯JavaScript，旨在为JavaScript提
 1. 不安全的特性，如指针运算等、`@trusted`特性
 2. 函数重载
 3. TypeInfo、ModuleInfo
-4. 位域和联合体
+4. 位域和包含多个字段的联合体
 5. `real`类型、向量类型
 6. 析构函数、嵌套类
 7. 内联asm
