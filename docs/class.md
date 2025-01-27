@@ -67,7 +67,7 @@ class A {
 ## 继承
 BetterJS使用`:`代替JS中的extends关键字
 
-在JS中允许extends null，在BetterJS中的等效写法如下
+在JS中允许`extends null`，在BetterJS中的等效写法如下
 ```d
 class A : typeof(null) {
     /* ... */

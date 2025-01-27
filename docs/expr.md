@@ -8,7 +8,12 @@
 
 ## cast表达式
 
-void表达式`cast(void)`
+void表达式用`cast(void)`表示，例如`cast(void)0`将编译为`void 0`
+
+除`cast(void)`外，其他cast表达式表示类型断言，例如`f(cast(double)x)`会被编译为`f(x)`
+
+因为JS中没有float类型，因此不支持`cast(float)`
+
 
 ## lambda表达式
 
@@ -19,6 +24,8 @@ const square = (double x) => x * x;
 ```js
 const square = (x) => x * x;
 ```
+
+注意在D语言中lambda表达式是不需要`=>`符号的
 
 ```d
 const square = (double x) {
@@ -58,10 +65,18 @@ const f = () => {
 ```
 
 ## 对象解构赋值
+
+若键名包含特殊字符，会自动加上`[]`
+若为Symbol类型
 ```d
-[foo: bar] = obj;
+["foo": bar] = obj;
+["user-agent": ua] = header;
+({key: a} = obj);
 ```
 
 ```js
 ({foo: bar} = obj);
+({["user-agent"]: ua} = header);
+({[key]: a} = obj);
 ```
+
