@@ -16,9 +16,11 @@
 enum EnumName {
     A,
     B,
-    C
+    C,
 }
 ```
+
+其中，`EnumName`表示枚举名称
 枚举成员不能重复，最后一个成员末尾可以有尾随逗号
 
 **示例**：
@@ -26,22 +28,18 @@ enum EnumName {
 普通枚举
 ```d
 enum Color {
-    Red,
-    Green,
-    Blue
+    red,
+    green,
+    blue,
 }
 ```
 
 带基础类型的枚举
 ```d
-enum Day : byte {
-    Sunday,
-    Monday,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday
+enum Ternary : byte {
+    unknown,
+    no,
+    yes,
 }
 ```
 
@@ -56,9 +54,9 @@ enum : long { A = 3, B }
 显式赋值
 ```d
 enum Color {
-    Red = 1,
-    Green = 2,
-    Blue = 4
+    red = 1,
+    green = 2,
+    blue = 4,
 }
 ```
 
