@@ -18,9 +18,8 @@
 ## 特殊类型
 
 - `any`：可转换为任意类型
-- `typeof(null)`：其值只能为`null`，`typeof(null).sizeof`等于size_t.sizeof
+- `typeof(null)`：属于引用类型，其值只能为`null`，`typeof(null).sizeof`等于size_t.sizeof
 - `noreturn`：相当于TypeScript中的`never`
-
 
 ## 内置类型
 内置类型在`betterjs.core`包中，包括以下类型：
@@ -31,7 +30,6 @@
 ## 内置类型工具
 内置类型工具在`betterjs.typecons`包中，包括以下模板：
 Awaited
-
 
 Exclude!(Type, ExcludedMembers)
 

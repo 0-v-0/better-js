@@ -4,8 +4,10 @@
 
 ### 取地址与解引用
 
-- `&x`→`({ value: x })`
-- `*p`→`p.value`
+- `&x`→`({ [value]: x })`
+- `*p`→`p[value]`
+
+其中`value`为一个内置Symbol
 
 ## 幂运算符
 
