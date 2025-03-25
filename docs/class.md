@@ -39,27 +39,28 @@ BetterJS中不支持析构函数
 语法
 ```d
 class A {
-    static string staticProperty = "someValue";
+    static string staticProp = "someValue";
     static string staticMethod() {
-        return "static method has been called.";
+        return "staticMethod() called";
     }
-    static int field = 1;
+    int field = 1;
 
     static this() {
-        console.log('Class static initialization block called');
+        console.log('Static initialization block called');
     }
 }
 ```
 
 ```js
 class A {
-    static staticProperty = "someValue";
+    static staticProp = "someValue";
     static staticMethod() {
-        return "static method has been called.";
+        return "staticMethod() called";
     }
+    field = 1;
 
     static {
-        console.log('Class static initialization block called');
+        console.log('Static initialization block called');
     }
 }
 ```
@@ -84,25 +85,31 @@ class A : typeof(null) {
 ## 抽象类
 抽象类使用`abstract`关键字定义，它只能被继承，不能被实例化
 ```d
-abstract class A {
-    void abstractMethod();
+abstract class Bird {
+    void fly();
 }
 ```
 
 ## 匿名类
+
+<table>
+<tr><td>BetterJS</td><td>JavaScript</td></tr>
+<tr><td>
 
 ```d
 new class Base {
     int foo = 2;
 }
 ```
+</td><td>
 
 ```js
 new class extends Base {
     foo = 2;
 }
-
 ```
+</td></tr>
+</table>
 
 ## 接口
 接口中只能定义方法，不含函数体的方法为抽象方法，包含函数体的方法必须用final修饰，例如：

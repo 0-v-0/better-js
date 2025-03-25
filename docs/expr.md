@@ -57,26 +57,27 @@ const f = () => {
 
 ## 可迭代对象解构赋值
 ```d
-[a, b] = arr
+[a, b] = arr;
 ```
 
 ```js
-[a, b] = arr
+[a, b] = arr;
 ```
 
 ## 对象解构赋值
 
-若键名包含特殊字符，会自动加上`[]`
-若为Symbol类型
+若键为Symbol类型或为变量，会自动加上`[]`
+
+对于不包含特殊字符的键名，会自动删除引号
+
 ```d
 ["foo": bar] = obj;
 ["user-agent": ua] = header;
-({key: a} = obj);
+([key: a] = obj);
 ```
 
 ```js
 ({foo: bar} = obj);
-({["user-agent"]: ua} = header);
+({"user-agent": ua} = header);
 ({[key]: a} = obj);
 ```
-
