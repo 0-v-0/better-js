@@ -65,6 +65,9 @@ class A {
 }
 ```
 
+## 构造函数中调用其他构造函数
+
+
 ## 继承
 BetterJS使用`:`代替JS中的extends关键字
 
@@ -112,10 +115,10 @@ new class extends Base {
 </table>
 
 ## 接口
-接口中只能定义方法，不含函数体的方法为抽象方法，包含函数体的方法必须用final修饰，例如：
+接口中只能定义方法，不含函数体的方法为抽象方法，包含函数体的方法必须用`final`或`static`修饰，例如：
 ```d
-interface I {
-    void func();
+interface Bell {
+    void beep();
 }
 ```
 不包含final方法的接口将不会产生代码。
