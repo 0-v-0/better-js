@@ -4,7 +4,7 @@
 
 `immuable s = Symbol();`，这里`s`的类型相当于TypeScript中的`unique symbol`
 
-`extern`修饰的变量为变量声明，将不会产生代码
+`extern`修饰的声明不产生代码
 
 ## 变量初始化
 
@@ -16,7 +16,7 @@ int n;
 let n = 0;
 ```
 
-若需要将变量初始化为`undefined`，请使用void初始化，例如：
+若无需初始化变量，请使用void初始化，例如：
 ```d
 int x = void;
 ```
@@ -25,17 +25,6 @@ let x;
 ```
 
 ## 作用域
-
-## 顶层语句
-在BetterJS中不支持顶层语句，需要将顶层语句写在模块构造函数中
-```d
-static this() {
-  foo();
-}
-```
-```js
-foo();
-```
 
 ## foreach
 foreach将编译为for of或in
@@ -61,9 +50,9 @@ for (const x of arr) {
 }
 ```
 
-若需要编译为for in，请使用`__in`函数
+若需要编译为for in，请使用`keys`属性
 ```d
-foreach (key; __in(obj)) {
+foreach (key; obj.keys) {
 }
 ```
 

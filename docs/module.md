@@ -35,11 +35,11 @@ export { a }
 ```
 导出多个符号
 ```d
-export alias a = a;
+export alias a = a, b = b;
 ```
 
 ```d
-export { a }
+export { a, b }
 ```
 
 ## export复合写法
@@ -96,3 +96,15 @@ export * as a from 'mod';
 
 - `import()`使用`__import()`代替
 - `import.meta`使用`__import.meta`代替
+
+
+## 顶层语句
+在BetterJS中不支持顶层语句，需要将顶层语句写在模块构造函数中
+```d
+static this() {
+  foo();
+}
+```
+```js
+foo();
+```
