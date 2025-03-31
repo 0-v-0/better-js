@@ -434,6 +434,19 @@ add(2, 3);
 ```
 
 </td><td>具名参数</td></tr>
+<tr><td>
+
+```d
+enum sum = add(1, 2);
+auto x = sum;
+```
+</td><td>
+
+```js
+let x = 3;
+```
+
+</td><td>编译时函数执行</td></tr>
 </table>
 
 ## 类
@@ -713,7 +726,7 @@ struct Point {
     int x, y;
 }
 struct Uninit {
-    int x, y = void;
+    int a, b = void;
 }
 ```
 
@@ -729,7 +742,7 @@ Uninit u;
 
 ```js
 let p = {x: 0, y: 0};
-let u = {x: 0};
+let u = {a: 0};
 ```
 </td><td>结构体默认初始化</td></tr>
 <tr><td>
@@ -765,12 +778,63 @@ Point p = {x: 2, y: 1};
 let p = {x: 2, y: 1};
 ```
 </td><td>结构体字面量初始化</td></tr>
+<tr><td>
+
+```d
+auto p = Point(2, 1);
+
+console.log(p.tupleof);
+console.log(p.tupleof[0]);
+p.tupleof[1] = 3;
+```
+</td><td>
+
+```js
+let p = {x: 2, y: 1};
+
+console.log(p.x, p.y);
+console.log(p.x);
+p.y = 3;
+```
+</td><td>tupleof</td></tr>
+<tr><td>
+
+```d
+auto p = Point(2, 1);
+auto u = cast(Uninit)p;
+```
+</td><td>
+
+```js
+let p = {x: 2, y: 1};
+let u = {a: x, b: y};
+```
+</td><td>同大小结构体强制转换</td></tr>
 </table>
 
 ## 别名与模板
 
+本节所使用的模板定义
+```d
+// 元组序列
+alias AliasSeq(TList...) = TList;
+```
+
 <table>
 <tr><td>BetterJS</td><td>JavaScript</td><td>注释</td></tr>
+<tr><td>
+
+```d
+mixin("int") x;
+auto y = mixin("1") + 2;
+```
+</td><td>
+
+```js
+let x = 0;
+let y = 3;
+```
+</td><td>mixin表达式</td></tr>
 <tr><td>
 
 ```d
@@ -788,11 +852,13 @@ add(a, b);
 ```d
 alias args = AliasSeq!(1, 2);
 add(args);
+const arr = [x];
 ```
 </td><td>
 
 ```js
 add(1, 2);
+const arr = [1, 2];
 ```
 </td><td>元组序列</td></tr>
 <tr><td>
@@ -818,5 +884,113 @@ T add(T: double)(T a, T b) { return a + b; }
 function add(a, b) { return a + b; }
 ```
 
-</td><td>模板约束</td></tr>
+</td><td>模板类型约束</td></tr>
+<tr><td>
+
+```d
+template A() {
+    int x;
+}
+
+template B(string val) {
+    string s = val;
+}
+
+mixin A;
+mixin B!"foo";
+```
+</td><td>
+
+```js
+let x = 0;
+let s = "foo";
+```
+</td><td>模板展开</td></tr>
+<tr><td>
+
+```d
+template Count(Args...) {
+    enum Count = Args.length;
+}
+// 可简化为：
+// enum Count(Args...) = Args.length;
+
+const count = Count!(7, 8, 9);
+```
+</td><td>
+
+```js
+const count = 3;
+```
+</td><td>可变参数模板</td></tr>
+<tr><td>
+
+```d
+template Int(uint bits) if (bits % 8 == 0) {
+    alias Int = AliasSeq!(byte, short, int, long, long)[bits / 16];
+}
+
+const max = Int!16.max;
+```
+</td><td>
+
+```js
+const max = 32767;
+```
+</td><td>模板条件约束</td></tr>
+<tr><td>
+
+```d
+template Add(int a) {
+    template Add(int b) {
+        enum Add = a + b;
+    }
+}
+
+alias t = Add!(1);
+auto sum = t!2;
+```
+</td><td>
+
+```js
+let sum = 3;
+```
+</td><td>多重模板实例化</td></tr>
+<tr><td>
+
+```d
+template factorial(uint n) {
+    static if (n <= 1)
+        enum factorial = 1;
+    else
+        enum factorial = n * factorial!(n - 1);
+}
+
+const x = factorial!4;
+```
+</td><td>
+
+```js
+const x = 24;
+```
+</td><td>递归模板</td></tr>
+<tr><td>
+
+```d
+// factorial模板定义见上个例子
+
+template expand(alias fun, size_t n) {
+    alias expand = AliasSeq!();
+    static foreach (i; 0 .. n)
+        expand = AliasSeq!(expand, fun!i);
+}
+
+const factorial = [expand!(factorial, 5)];
+```
+</td><td>
+
+```js
+const factorial = [1, 1, 2, 6, 24];
+```
+</td><td>模板作为模板参数</td></tr>
 </table>
