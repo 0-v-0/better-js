@@ -18,7 +18,7 @@ BetterJS是D语言的子集，可编译成纯JavaScript，旨在为JavaScript提
 7. 内联asm
 8. try后面多个catch
 9. Built-in threading & synchronized
-10. shared修饰符
+10. shared和__gshared修饰符
 11. 除`delete`外的已弃用的特性，如`ucent`等
 
 字符类型将转换为只包含1个字符的字符串
