@@ -26,6 +26,7 @@
 1. Object
 2. Array
 3. BigInt
+4. Number
 
 ## 内置类型工具
 内置类型工具在`betterjs.typecons`包中，包括以下模板：
@@ -36,4 +37,3 @@ Exclude!(Type, ExcludedMembers)
 Extract
 
 InstanceType
-

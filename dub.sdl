@@ -1,0 +1,16 @@
+name "better-js"
+description "A subset of D programming language compiling to JavaScript"
+homepage "https://github.com/0-v-0/better-js"
+authors "0-v-0"
+copyright "Copyright © 2025 0-v-0"
+license "MIT"
+
+dflags "-betterC"
+libs "ucrtbase" platform="windows"
+
+sourceFiles "test.d"
+targetType "executable"
+importPaths "."
+dependency "tame" path="../tame"
+dependency "nurt" path="../nurt"
+subConfiguration "nurt" "ldc-static"
